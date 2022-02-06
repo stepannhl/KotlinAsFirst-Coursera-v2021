@@ -2,7 +2,10 @@
 
 package lesson4.task1
 
+
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
+import lesson3.task1.isPrime
 import kotlin.math.sqrt
 
 // Урок 4: списки
@@ -120,14 +123,24 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun abs(v: List<Double>): Double {
+    if (v.isEmpty()) return 0.0
+    return sqrt(v.fold(0.0)
+    { acc, it ->
+        acc + sqr(it)
+    })
+}
 
 /**
  * Простая (2 балла)
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
+fun mean(list: List<Double>): Double {
+    if (list.isEmpty()) return 0.0
+
+    return list.sum() / list.size
+}
 
 /**
  * Средняя (3 балла)
@@ -137,7 +150,14 @@ fun mean(list: List<Double>): Double = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+    if (list.isEmpty()) return list
+
+    val mean = mean(list)
+    for (i in 0 until list.size) list[i] -= mean
+
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -168,7 +188,17 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
+fun accumulate(list: MutableList<Int>): MutableList<Int> {
+    if (list.isEmpty()) return list
+
+    var sum = 0
+    for (i in 0 until list.size) {
+        list[i] += sum
+        sum = list[i]
+    }
+
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -186,7 +216,7 @@ fun factorize(n: Int): List<Int> = TODO()
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*")
 
 /**
  * Средняя (3 балла)
@@ -208,7 +238,48 @@ fun convert(n: Int, base: Int): List<Int> = TODO()
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, n.toString(base) и подобные), запрещается.
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+fun convertToString(n: Int, base: Int): String {
+    val convertToList = convert(n, base)
+
+    return convertToList.fold("") { acc, it ->
+        if (it > 9) {
+            acc + numberToLetter(it)
+        } else {
+            acc + it.toString()
+        }
+    }
+}
+fun numberToLetter(n: Int): String {
+    return when (n) {
+        10 -> "a"
+        11 -> "b"
+        12 -> "c"
+        13 -> "d"
+        14 -> "e"
+        15 -> "f"
+        16 -> "g"
+        17 -> "h"
+        18 -> "i"
+        19 -> "j"
+        20 -> "k"
+        21 -> "l"
+        22 -> "m"
+        23 -> "n"
+        24 -> "o"
+        25 -> "p"
+        26 -> "q"
+        27 -> "r"
+        28 -> "s"
+        29 -> "t"
+        30 -> "u"
+        31 -> "v"
+        32 -> "w"
+        33 -> "x"
+        34 -> "y"
+        35 -> "z"
+        else -> ""
+    }
+}
 
 /**
  * Средняя (3 балла)

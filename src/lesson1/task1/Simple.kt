@@ -2,6 +2,8 @@
 
 package lesson1.task1
 
+import java.lang.Math.ceil
+import java.lang.Math.pow
 import kotlin.math.*
 
 // Урок 1: простые функции
@@ -65,7 +67,8 @@ fun main() {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int =
+    hours * 3600 + minutes * 60 + seconds;
 
 /**
  * Тривиальная (1 балл)
@@ -74,7 +77,8 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double =
+    (((sagenes * 48) + (arshins * 16) + vershoks) * 4.445) / 100;
 
 /**
  * Тривиальная (1 балл)
@@ -90,7 +94,8 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
+        (sqrt(pow(2.0, (abs(x2 - x1)))+pow(2.0, (abs((y2 - y1))))))
 
 /**
  * Простая (2 балла)
@@ -98,7 +103,7 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
  * Пользователь задает целое число, больше или равно 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int = TODO()
+fun thirdDigit(number: Int): Int = (number/100)%10
 
 /**
  * Простая (2 балла)
